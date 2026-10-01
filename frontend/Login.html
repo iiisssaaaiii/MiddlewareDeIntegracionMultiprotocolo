@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciar sesión - Middleware de Integración Multiprotocolo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="Login.css">
+</head>
+<body>
+  <main class="layout">
+
+    <!-- Panel de marca -->
+    <section class="brand">
+      <h1 class="brand-name">Middleware de Integración Multiprotocolo</h1>
+      <p class="brand-tagline">Un solo punto de conexión para todos tus protocolos.</p>
+
+      <svg class="flow" viewBox="0 0 480 320" role="img"
+           aria-label="Cinco protocolos (MQTT, OPC UA, Modbus, REST y AMQP) convergen en un único canal">
+        <g class="flow-in">
+          <path d="M92 40  C190 40,  210 160, 300 160" />
+          <path d="M92 100 C190 100, 210 160, 300 160" />
+          <path d="M92 160 L300 160" />
+          <path d="M92 220 C190 220, 210 160, 300 160" />
+          <path d="M92 280 C190 280, 210 160, 300 160" />
+        </g>
+        <path class="flow-out" d="M300 160 L470 160" />
+        <circle class="flow-hub" cx="300" cy="160" r="10" />
+
+        <g class="flow-labels">
+          <text x="8" y="44">MQTT</text>
+          <text x="8" y="104">OPC UA</text>
+          <text x="8" y="164">Modbus</text>
+          <text x="8" y="224">REST</text>
+          <text x="8" y="284">AMQP</text>
+        </g>
+      </svg>
+    </section>
+
+    <!-- Panel del formulario -->
+    <section class="panel">
+      <form id="login-form" class="form" novalidate>
+        <h2>Iniciar sesión</h2>
+        <p class="form-intro">Accede a la consola de administración.</p>
+
+        <div class="field">
+          <label for="usuario">Usuario o correo</label>
+          <input id="usuario" name="usuario" type="text" autocomplete="username"
+                 aria-describedby="usuario-error" required>
+          <p class="field-error" id="usuario-error" hidden></p>
+        </div>
+
+        <div class="field">
+          <label for="password">Contraseña</label>
+          <div class="password-wrap">
+            <input id="password" name="password" type="password" autocomplete="current-password"
+                   aria-describedby="password-error" required>
+            <button type="button" id="toggle-password" class="ghost"
+                    aria-controls="password" aria-pressed="false">Mostrar</button>
+          </div>
+          <p class="field-error" id="password-error" hidden></p>
+        </div>
+
+        <div class="row">
+          <label class="check">
+            <input type="checkbox" name="recordar">
+            <span>Mantener sesión iniciada</span>
+          </label>
+          <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" id="submit" class="primary">Iniciar sesión</button>
+
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+
+  </main>
+
+  <script src="login.js"></script>
+</body>
+</html>
