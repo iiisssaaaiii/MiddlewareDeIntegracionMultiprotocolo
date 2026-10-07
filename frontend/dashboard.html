@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Middleware de Integración Multiprotocolo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#latencia">
+      <span class="brand-mark" aria-hidden="true"></span>
+      Middleware Multiprotocolo
+    </a>
+
+    <nav class="tabs" aria-label="Pantallas">
+      <a href="#latencia" data-view="latencia">Latencia</a>
+      <a href="#logs" data-view="logs">System logs</a>
+      <a href="#nodos" data-view="nodos">Estado de nodos</a>
+    </nav>
+
+    <div class="session">
+      <span class="user">admin</span>
+      <a class="logout" href="index.html">Cerrar sesión</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Latencia -->
+    <section id="view-latencia" class="view">
+      <div class="cards">
+        <article class="card" data-proto="mqtt">
+          <div class="card-head"><h2>MQTT</h2><span class="live">LIVE</span></div>
+          <p class="metric"><strong data-value="3145">3145</strong> <span>req/min</span></p>
+          <p class="metric-label">Solicitudes entrantes / min</p>
+          <svg class="spark" viewBox="0 0 400 44" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <p class="delta up">▲ +8.3% vs hora anterior</p>
+        </article>
+
+        <article class="card" data-proto="http">
+          <div class="card-head"><h2>HTTP</h2><span class="live">LIVE</span></div>
+          <p class="metric"><strong data-value="1768">1768</strong> <span>req/min</span></p>
+          <p class="metric-label">Solicitudes entrantes / min</p>
+          <svg class="spark" viewBox="0 0 400 44" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <p class="delta up">▲ +2.1% vs hora anterior</p>
+        </article>
+
+        <article class="card" data-proto="coap">
+          <div class="card-head"><h2>CoAP</h2><span class="live">LIVE</span></div>
+          <p class="metric"><strong data-value="1148">1148</strong> <span>req/min</span></p>
+          <p class="metric-label">Solicitudes entrantes / min</p>
+          <svg class="spark" viewBox="0 0 400 44" preserveAspectRatio="none" aria-hidden="true"></svg>
+          <p class="delta down">▼ -1.4% vs hora anterior</p>
+        </article>
+      </div>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <h2 class="panel-title">LATENCIA DE NORMALIZACIÓN DE MENSAJES</h2>
+            <p class="panel-sub">Comparación de tiempo de procesamiento - últimos 60 minutos (ms)</p>
+          </div>
+          <ul class="legend">
+            <li class="mqtt">MQTT</li>
+            <li class="http">HTTP</li>
+            <li class="coap">CoAP</li>
+          </ul>
+        </div>
+        <div id="chart" class="chart"></div>
+      </section>
+    </section>
+
+    <!-- 2. System logs -->
+    <section id="view-logs" class="view" hidden>
+      <div class="terminal">
+        <div class="terminal-head">
+          <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+          <span class="terminal-title">system-logs — /var/log/transit-middleware/output.log</span>
+        </div>
+        <div id="log-body" class="terminal-body" tabindex="0" aria-label="Registro del sistema"></div>
+      </div>
+    </section>
+
+    <!-- 3. Estado de nodos -->
+    <section id="view-nodos" class="view" hidden>
+      <section class="panel flush">
+        <div class="panel-head padded">
+          <h2 class="panel-title accent">ESTADO DE CONEXIÓN DE NODOS</h2>
+          <span id="online-count" class="online-count"></span>
+        </div>
+        <div class="table-wrap">
+          <table class="nodes">
+            <thead>
+              <tr>
+                <th>NODO</th><th>RUTA</th><th>PROTOCOLO</th><th>ESTADO</th><th>PING</th><th>ÚLTIMA VEZ</th>
+              </tr>
+            </thead>
+            <tbody id="nodes-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>
